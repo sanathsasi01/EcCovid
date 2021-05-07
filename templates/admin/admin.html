@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Admin</h2>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <form action=" {% url 'AddDoctor' %} " method="POST">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">Add Doctor</button>
+    </form>
+
+    <a href=" {% url 'logout_view' %} "> Logout </a>
+{% endblock %}
