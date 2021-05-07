@@ -51,8 +51,32 @@ class UserManager(BaseUserManager):
         user.firstname = firstname
         user.lastname = lastname
         user.sex = sex
+        user.doctor = True
         user.save(using=self._db)
+        return user
+    
+    def create_labAssistant(self, username, password, firstname, lastname, sex):     
+        user = self.create_user(
+            username,
+            password=password
+        )
+        user.firstname = firstname
+        user.lastname = lastname
+        user.sex = sex
+        user.labAssitant = True
+        user.save(using=self._db)
+        return user
 
+    def create_radiologist(self, username, password, firstname, lastname, sex):     
+        user = self.create_user(
+            username,
+            password=password
+        )
+        user.firstname = firstname
+        user.lastname = lastname
+        user.sex = sex
+        user.radiologist = True
+        user.save(using=self._db)
         return user
 
 
@@ -67,6 +91,9 @@ class User(AbstractBaseUser):
     sex = models.CharField(max_length=10, null=True)
     admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    doctor = models.BooleanField(default=False)
+    labAssitant = models.BooleanField(default=False)
+    radiologist = models.BooleanField(default=False)
     # doctor = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'username'

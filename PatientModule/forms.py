@@ -24,6 +24,7 @@ class AddPatient(forms.ModelForm):
         )
     sex = forms.ChoiceField(choices=sex_choice)
     criticallity = forms.ChoiceField(choices=criticality_choice)
+    
     class Meta:
         model = PatientDetails
         fields = '__all__'

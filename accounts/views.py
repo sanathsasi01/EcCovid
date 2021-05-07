@@ -8,19 +8,7 @@ from django.contrib import messages
 
 from django.contrib.auth import get_user_model
 User = get_user_model() 
-# import uuid
 
-
-
-
-# def registration(request):
-#     hospitals = HospitalDetails.objects.all()
-
-#     # myuuid = uuid.uuid4()
-
-#     # print('Your UUID is: ' + str(myuuid))
-
-#     return render(request, 'accounts/registration.html', {'hospitals' : hospitals})
 
 
 # user registration
@@ -79,13 +67,16 @@ def login_view(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.admin:
-                # response = redirect('adminPage')
-                # response.set_cookie('username', username)
+                response = redirect('adminPage')
+                response.set_cookie('username', username)
                 login(request, user)         
-                return redirect('adminPage')
+                # return redirect('adminPage')
+                return response
             else:
+                response = redirect('doctorPage')
+                response.set_cookie('username', username)
                 login(request, user)         
-                return redirect('doctorPage')
+                return response
         else:
             messages.error(request, 'Invalid Credentials')
             return redirect('login')

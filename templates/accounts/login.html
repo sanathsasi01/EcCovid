@@ -1,18 +1,61 @@
 {% extends 'base.html' %}
+
 {% block content %}
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    <form action="" method="POST">
+<body id="login-page">
+
+    
+    <div class="container" id="logo-image">
+        <img src="/static/images/Group 1.png" alt="ec-covid logo" width="250px"/>
+        <div id="login-head">
+          <p>Welcome back! Please login to your account.</p>
+        </div>
+        <div id="login">
+            <form action=" {% url 'login' %} " method="POST">
+                {% csrf_token %}
+                {% if messages %}
+                        {% for message in messages %}
+                        <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                        {% endfor %}
+                {% endif %}
+                <div>
+                    <input type="text" placeholder="Username" name="username" id="login-username"/>
+                </div>
+                <div>
+                    <input type="password" placeholder="Password" name="password" id="login-password"/>
+                </div>
+                <div class="r-checkbox">
+                <div id="remember-me">
+                    <input type="checkbox"  id="login-checkbox"/>
+                    <span class="r-text">Remember me</span>
+                    <span class="forget-text">Forgot password ?</span>
+                </div>
+                <div>
+                    <button type="submit" id="login-button">Login</button>
+                    <!-- <button type="submit">Sign up</button> -->
+                </div>
+            </form>
+        </div>
+    </div>
+        <div id="covid-warriors">
+            <p>
+                <b>Covid Warriors</b> - Concentrate On Saving Lives 
+            </p>
+            <p>
+                We Are There To Make Your Other Works Hassle Free
+            </p>
+        </div>
+
+
+        <p id="powered-by-text">Powered By Shebirth LLC</p>
+    <!-- <form action="" method="POST">
         {% csrf_token %}
         <label for="username">Username</label>
         <input type="text" name="username">
         <label for="password">Password</label>
         <input type="password" name="password">
         <button type="submit"> Login </button>
-    </form>
+    </form> -->
+
+</body>
+
 {% endblock %}

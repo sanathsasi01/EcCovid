@@ -17,7 +17,11 @@
                 {{form}}
             <button type="submit">Add Patient</button>
         </form>
-    
+
+
+        {% for x in patients %}
+            <p>{{x.patient.firstname}} {{x.patient.lastname}}   {{x.patient.sex}}  {{x.patient.dateAdmitted|date:"d/m/Y"}} {{x.patient.criticallity}}</p>
+        {% endfor %}
 
 
     <a href=" {% url 'logout_view' %} "> Logout </a>
