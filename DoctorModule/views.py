@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from AdminModule.forms import DoctorForm
 from django.contrib import messages
-
+from PatientModule.forms import AddPatient
 from django.contrib.auth import get_user_model
 User = get_user_model() 
 
 def doctorPage(request):
-    return render(request, 'doctor/doctor.html')
+    form  = AddPatient()
+    return render(request, 'doctor/doctor.html', {'form':form})
 
 
 def AddDoctor(request):

@@ -7,7 +7,8 @@ class DoctorForm(forms.Form):
         ('female','Female'),
         ('other','Other'),
     )
-    username = forms.CharField(max_length=50,label='User Name', required=True)
+    username = forms.CharField(max_length=50,label='User Name', required=True,widget= forms.TextInput(
+                           attrs={'class':'some_class','id':'some_id'}))
     firstname = forms.CharField(max_length=50, label='First Name', required=True)
     lastname = forms.CharField(max_length=50, label='Last Name', required=True)
     sex = forms.ChoiceField(choices=sexChoices, required=True)

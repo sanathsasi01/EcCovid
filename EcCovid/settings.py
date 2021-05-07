@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     # custom
     'accounts',
     'AdminModule',
+    'DoctorModule',
+    'PatientModule',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

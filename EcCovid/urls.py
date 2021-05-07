@@ -22,5 +22,6 @@ urlpatterns = [
 
     path('EC-covid-Adminpage/', include('AdminModule.urls') ),
     path('Doctor-page/', include('DoctorModule.urls')),
+    path('Patient/', include('PatientModule.urls')),
 
 ]
