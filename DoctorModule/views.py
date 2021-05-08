@@ -15,14 +15,17 @@ User = get_user_model()
 def doctorPage(request):
     doc_id = request.user.id
     patients = PatientDetails.objects.filter(doctor=doc_id)
-    AddPatientForm  = AddPatient(
-        initial={ 'doctor' : doc_id }
-    )
-    # RTPCRForm = RTPCR_Detail()
+
+    # forms
+    AddPatientForm  = AddPatient(initial={ 'doctor' : doc_id })
+    PatientSymptomsForm = SymptomsForm()
+    PatientSignsForm = SignsForm()
+
     context = {
         'patients' : patients,
         'AddPatientForm' : AddPatientForm,
-        # 'RTPCRForm' : RTPCRForm
+        'PatientSymptomsForm' : PatientSymptomsForm,
+        'PatientSignsForm' : PatientSignsForm
     }
     return render(request, 'doctor/doctor.html', context)
 

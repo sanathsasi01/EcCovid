@@ -15,27 +15,37 @@
         <form action="{% url 'AddPatient' %}" method="POST">
             {% csrf_token %}
                 {{AddPatientForm.doctor.as_hidden}}
-                {{AddPatientForm.name}}
-                {{AddPatientForm.age}}
-                {{AddPatientForm.sex}}
-                {{AddPatientForm.dob}}
-                {{AddPatientForm.adhaar}}
-                {{AddPatientForm.address}}
-                {{AddPatientForm.personal_mobile_no}}
-                {{AddPatientForm.bystander_mobile_no}}
-                {{AddPatientForm.dateAdmitted}}
-                {{AddPatientForm.criticallity}}
-                {{AddPatientForm.swab_taken}}
-                {{AddPatientForm.hrct_taken}}
-                {{AddPatientForm.lab_name_with_address}}
-                {{AddPatientForm.date_of_test}}
-                {{AddPatientForm.positive_or_negative}}
-                {{AddPatientForm.sr_id}}
-                {{AddPatientForm.icmr_id}}
-                {{AddPatientForm.ct_thorax_taken}}
-                {{AddPatientForm.ct_thorax_date}} <br><br>
+                name : {{AddPatientForm.name}} <br>
+                age : {{AddPatientForm.age}}<br>
+                Sex : {{AddPatientForm.sex}}<br>
+               DOB:  {{AddPatientForm.dob}}<br>
+                adhaar : {{AddPatientForm.adhaar}}<br>
+                address : {{AddPatientForm.address}}<br>
+                personal mobile no : {{AddPatientForm.personal_mobile_no}}<br>
+                bystander_mobile_no: {{AddPatientForm.bystander_mobile_no}}<br>
+                dateAdmitted :{{AddPatientForm.dateAdmitted}}<br>
+                criticallity:{{AddPatientForm.criticallity}}<br>
+                swab_taken:{{AddPatientForm.swab_taken}}<br>
+                hrct_taken:{{AddPatientForm.hrct_taken}}<br>
+                lab_name_with_address:{{AddPatientForm.lab_name_with_address}}<br>
+                date_of_test:{{AddPatientForm.date_of_test}}<br>
+                positive_or_negative:{{AddPatientForm.positive_or_negative}}<br>
+                sr_id:{{AddPatientForm.sr_id}}<br>
+                icmr_id:{{AddPatientForm.icmr_id}}<br>
+                ct_thorax_taken:{{AddPatientForm.ct_thorax_taken}}<br>
+                ct_thorax_date:{{AddPatientForm.ct_thorax_date}} <br>
+                <br><br>
+                <hr>
+                {{PatientSymptomsForm.as_p}}
+                <hr>
+                {{PatientSignsForm.as_p}}
             <button type="submit">Add Patient</button>
         </form>
+        <br><br>
+        {% for x in patients %}
+            {{ x.name }} <br>
+        {% endfor %}
+        <br><br>
 
 
         
