@@ -25,4 +25,5 @@ urlpatterns = [
     path('EC-covid-Adminpage/', include('AdminModule.urls') ),
     path('Doctor-page/', include('DoctorModule.urls')),
     path('Patient/', include('PatientModule.urls')),
+    path('case-sheet/', include('CaseSheet.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

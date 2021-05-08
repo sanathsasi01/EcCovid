@@ -12,7 +12,7 @@ def AddPatients(request):
         form = AddPatient(request.POST)
         if form.is_valid():
             try:
-                doc_username = request.COOKIES['username']
+                doc_username = request.user.username
                 doctor = User.objects.get(username=doc_username)
                 patient=form.save()
                 doc_patient_realtion = DoctorPatientRelation(patient=patient, doctor=doctor)

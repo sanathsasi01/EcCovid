@@ -91,3 +91,7 @@
   position: fixed;
   bottom: 10px;
 }
+
+.respiratory {
+  border: 1px solid red;
+}

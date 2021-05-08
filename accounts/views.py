@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib import messages
 
-
+# get currently active user model.
 from django.contrib.auth import get_user_model
 User = get_user_model() 
 
@@ -67,16 +66,17 @@ def login_view(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.admin:
-                response = redirect('adminPage')
-                response.set_cookie('username', username)
+                # response = redirect('adminPage')
+                # response.set_cookie('username', username)
                 login(request, user)         
-                # return redirect('adminPage')
-                return response
+                return redirect('adminPage')
+                # return response
             else:
-                response = redirect('doctorPage')
-                response.set_cookie('username', username)
+                # response = redirect('doctorPage')
+                # response.set_cookie('username', username)
                 login(request, user)         
-                return response
+                # return response
+                return redirect('doctorPage')
         else:
             messages.error(request, 'Invalid Credentials')
             return redirect('login')
@@ -84,9 +84,6 @@ def login_view(request):
         return render(request, 'accounts/login.html')
 
 
-
-def userPage(request):
-    return HttpResponse('<h1>Welcome Rogi</h1>')
 
 # user logout
 def logout_view(request):

@@ -14,13 +14,16 @@
 
         <form action="{% url 'AddPatient' %}" method="POST">
             {% csrf_token %}
-                {{form}}
+                {{form.as_p}}
             <button type="submit">Add Patient</button>
         </form>
 
 
         {% for x in patients %}
-            <p>{{x.patient.firstname}} {{x.patient.lastname}}   {{x.patient.sex}}  {{x.patient.dateAdmitted|date:"d/m/Y"}} {{x.patient.criticallity}}</p>
+            <p>
+                {{x.patient.firstname}} {{x.patient.lastname}}   {{x.patient.sex}}  {{x.patient.dateAdmitted|date:"d/m/Y"}} {{x.patient.criticallity}}
+                <a href=" {% url 'CaseSheet' x.patient.id 1 %} ">Add case File</a>
+            </p>
         {% endfor %}
 
 

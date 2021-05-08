@@ -7,9 +7,9 @@ from django.contrib.auth import get_user_model
 User = get_user_model() 
 
 def doctorPage(request):
-    username = request.COOKIES['username']
     try:
-        doctor = User.objects.get(username=username)
+        doc_username = request.user.username
+        doctor = User.objects.get(username=doc_username)
         patients = DoctorPatientRelation.objects.filter(doctor=doctor.id)
         form  = AddPatient()
         context = {

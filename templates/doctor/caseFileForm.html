@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load widget_tweaks %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.doc_pat_relation.as_hidden}}
+    {{form.day.as_hidden}}
+
+    <label for="respiratory">Respiratory</label>
+    {{form.respiratory|add_class:"respiratory"}} <br><br>
+    <label for="medicines">Medicines</label>
+    {{form.medicines}} <br><br>
+<label for="allergies">Allergies</label>
+    {{form.allergies}} <br><br>
+    <!-- {{form.as_p}} -->
+    <button type="submit">Add Case File</button>
+</form>
+
+
+{% endblock %}
