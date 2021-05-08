@@ -15,16 +15,19 @@
         <form action="{% url 'AddPatient' %}" method="POST">
             {% csrf_token %}
                 {{AddPatientForm.doctor.as_hidden}}
+                <!-- NEW PATIENT REGISTRATION -->
+                <hr>
                 name : {{AddPatientForm.name}} <br>
                 age : {{AddPatientForm.age}}<br>
                 Sex : {{AddPatientForm.sex}}<br>
-               DOB:  {{AddPatientForm.dob}}<br>
+                DOB:  {{AddPatientForm.dob}}<br>
                 adhaar : {{AddPatientForm.adhaar}}<br>
                 address : {{AddPatientForm.address}}<br>
                 personal mobile no : {{AddPatientForm.personal_mobile_no}}<br>
                 bystander_mobile_no: {{AddPatientForm.bystander_mobile_no}}<br>
                 dateAdmitted :{{AddPatientForm.dateAdmitted}}<br>
                 criticallity:{{AddPatientForm.criticallity}}<br>
+                <h3>RT-PCR DETAILS</h3>
                 swab_taken:{{AddPatientForm.swab_taken}}<br>
                 hrct_taken:{{AddPatientForm.hrct_taken}}<br>
                 lab_name_with_address:{{AddPatientForm.lab_name_with_address}}<br>
@@ -36,9 +39,12 @@
                 ct_thorax_date:{{AddPatientForm.ct_thorax_date}} <br>
                 <br><br>
                 <hr>
+                <h3>PATIENT CASE SHEET</h3>
                 {{PatientSymptomsForm.as_p}}
-                <hr>
+                <h3>SIGNS</h3>
                 {{PatientSignsForm.as_p}}
+                <hr>
+
             <button type="submit">Add Patient</button>
         </form>
         <br><br>

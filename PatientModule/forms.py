@@ -88,9 +88,31 @@ class SymptomsForm(forms.ModelForm):
         }
 
 class SignsForm(forms.ModelForm):
+    pulse_rate = forms.CharField(
+                           widget= forms.TextInput
+                           (attrs={'placeholder':'/MIN'}))
+    blood_pressure = forms.CharField(
+                           widget= forms.TextInput
+                           (attrs={'placeholder':'/MM OF HG'}))
+    respiratory_rate = forms.CharField(
+                           widget= forms.TextInput
+                           (attrs={'placeholder':'/MIN'}))    
+    spo2 =  forms.CharField(
+                           widget= forms.TextInput
+                           (attrs={'placeholder':'%RA'}))
+    cbg =  forms.CharField(
+                           widget= forms.TextInput
+                           (attrs={'placeholder':'MG/DC'}))
+    temperature =  forms.CharField(
+                           widget= forms.TextInput
+                           (attrs={'placeholder':'/F'}))
+
     class Meta:
         model = Signs
         exclude = ('patient',)
+        # widgets = {
+        #     'pulse_rate': forms.CharField(attrs={'placeholder': 'rate'})
+        # }
 
 
 
