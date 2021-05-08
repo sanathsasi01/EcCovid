@@ -3,7 +3,6 @@
 {% block content %}
 <body id="login-page">
 
-    
     <div class="container" id="logo-image">
         <img src="/static/images/Group 1.png" alt="ec-covid logo" width="250px"/>
         <div id="login-head">
@@ -18,7 +17,7 @@
                         {% endfor %}
                 {% endif %}
                 <div>
-                    <input type="text" placeholder="Username" name="username" id="login-username"/>
+                    <input type="text" placeholder="Username" name="username" id="login-username" autocomplete="off"/>
                 </div>
                 <div>
                     <input type="password" placeholder="Password" name="password" id="login-password"/>
@@ -31,7 +30,6 @@
                 </div>
                 <div>
                     <button type="submit" id="login-button">Login</button>
-                    <!-- <button type="submit">Sign up</button> -->
                 </div>
             </form>
         </div>

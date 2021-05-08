@@ -31,13 +31,17 @@
     background: none;
     border-bottom: 1px solid white;
     /* margin-top: 12px; */
+    outline: none;
     width: 350px;
     margin-top: 45px;
     padding: 10px 5px;
 }
 #login-checkbox{
     margin-top: 33px;
- }
+}
+#login-password, #login-username:focus {
+  outline: none;
+}
 
 .r-checkbox{
   display: inline
@@ -94,4 +98,9 @@
 
 .respiratory {
   border: 1px solid red;
+}
+
+/* remove  radio select dots */
+* {
+  list-style: none;
 }

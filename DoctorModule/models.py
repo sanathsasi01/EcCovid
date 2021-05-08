@@ -10,7 +10,7 @@ class DoctorPatientRelation(models.Model):
     doctor = models.ForeignKey(User, on_delete=models.CASCADE)
     patient = models.ForeignKey(PatientDetails, on_delete=models.CASCADE)
 
-    def  __str__(self):
-        return self.doctor.firstname + ' ' + self.patient.firstname
+    # def  __str__(self):
+    #     return self.doctor.firstname
     
 

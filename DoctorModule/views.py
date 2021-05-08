@@ -1,24 +1,29 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
-from AdminModule.forms import DoctorForm
 from django.contrib import messages
-from PatientModule.forms import AddPatient
+
+from AdminModule.forms import DoctorForm
+
+from PatientModule.forms import *
+from PatientModule.models import PatientDetails
+
 from DoctorModule.models import DoctorPatientRelation
+
+
 from django.contrib.auth import get_user_model
 User = get_user_model() 
 
 def doctorPage(request):
-    try:
-        doc_username = request.user.username
-        doctor = User.objects.get(username=doc_username)
-        patients = DoctorPatientRelation.objects.filter(doctor=doctor.id)
-        form  = AddPatient()
-        context = {
-            'patients' : patients,
-            'form' : form
-        }
-    except doctor.DoesNotExist:
-        messages.error(request, 'Something went wrong, try again')
-        return redirect('logout_view')
+    doc_id = request.user.id
+    patients = PatientDetails.objects.filter(doctor=doc_id)
+    AddPatientForm  = AddPatient(
+        initial={ 'doctor' : doc_id }
+    )
+    # RTPCRForm = RTPCR_Detail()
+    context = {
+        'patients' : patients,
+        'AddPatientForm' : AddPatientForm,
+        # 'RTPCRForm' : RTPCRForm
+    }
     return render(request, 'doctor/doctor.html', context)
 
 
@@ -42,8 +47,6 @@ def AddDoctor(request):
                     messages.success(request, 'Doctor added suuccessfuly')
             else:
                 messages.error(request, 'Passwords does not match')
-            # return redirect('adminPage')
-            # return render(request, 'admin/admin.html', {'form':form})
         return redirect('adminPage')
             
                     

@@ -66,16 +66,10 @@ def login_view(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.admin:
-                # response = redirect('adminPage')
-                # response.set_cookie('username', username)
                 login(request, user)         
                 return redirect('adminPage')
-                # return response
             else:
-                # response = redirect('doctorPage')
-                # response.set_cookie('username', username)
                 login(request, user)         
-                # return response
                 return redirect('doctorPage')
         else:
             messages.error(request, 'Invalid Credentials')

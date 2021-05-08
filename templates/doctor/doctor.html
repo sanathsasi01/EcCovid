@@ -14,17 +14,31 @@
 
         <form action="{% url 'AddPatient' %}" method="POST">
             {% csrf_token %}
-                {{form.as_p}}
+                {{AddPatientForm.doctor.as_hidden}}
+                {{AddPatientForm.name}}
+                {{AddPatientForm.age}}
+                {{AddPatientForm.sex}}
+                {{AddPatientForm.dob}}
+                {{AddPatientForm.adhaar}}
+                {{AddPatientForm.address}}
+                {{AddPatientForm.personal_mobile_no}}
+                {{AddPatientForm.bystander_mobile_no}}
+                {{AddPatientForm.dateAdmitted}}
+                {{AddPatientForm.criticallity}}
+                {{AddPatientForm.swab_taken}}
+                {{AddPatientForm.hrct_taken}}
+                {{AddPatientForm.lab_name_with_address}}
+                {{AddPatientForm.date_of_test}}
+                {{AddPatientForm.positive_or_negative}}
+                {{AddPatientForm.sr_id}}
+                {{AddPatientForm.icmr_id}}
+                {{AddPatientForm.ct_thorax_taken}}
+                {{AddPatientForm.ct_thorax_date}} <br><br>
             <button type="submit">Add Patient</button>
         </form>
 
 
-        {% for x in patients %}
-            <p>
-                {{x.patient.firstname}} {{x.patient.lastname}}   {{x.patient.sex}}  {{x.patient.dateAdmitted|date:"d/m/Y"}} {{x.patient.criticallity}}
-                <a href=" {% url 'CaseSheet' x.patient.id 1 %} ">Add case File</a>
-            </p>
-        {% endfor %}
+        
 
 
     <a href=" {% url 'logout_view' %} "> Logout </a>

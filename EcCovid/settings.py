@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'PatientModule',
     'CaseSheet',
     'widget_tweaks',
+    'phonenumber_field',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -85,7 +86,7 @@ WSGI_APPLICATION = 'EcCovid.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'EcCovid',
+        'NAME': 'EcCovid2',
         'USER' : 'postgres',
         'PASSWORD' : '0480',
         'HOST' : 'localhost',
@@ -143,3 +144,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'accounts.User'
+
+# phone no
+
+# PHONENUMBER_DB_FORMAT = 'NATIONAL'
+# PHONENUMBER_DEFAULT_REGION =  'IN'
