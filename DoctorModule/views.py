@@ -24,6 +24,7 @@ def doctorPage(request):
     PatientExaminationForm = ExaminationForm()
     PatientDifferentialDiagnosisForm = DifferentialDiagnosisForm()
     PatientMicrobiologyForm = MicrobiologyForm()
+    patientTreatmentForm = TreatmentForm()
 
     context = {
         'patients' : patients,
@@ -32,10 +33,12 @@ def doctorPage(request):
         'PatientSignsForm' : PatientSignsForm,
         'PatientPastHistoryForm' : PatientPastHistoryForm,
         'PatientExaminationForm' : PatientExaminationForm,
-        'PatientDifferentialDiagnosisForm' : PatientDifferentialDiagnosisForm,
-        'PatientMicrobiologyForm' : PatientMicrobiologyForm
+        'PatientDifferentialDiagnosisForm' :PatientDifferentialDiagnosisForm,
+        'PatientMicrobiologyForm' : PatientMicrobiologyForm,
+        'patientTreatmentForm' : patientTreatmentForm
+
     }
-    return render(request, 'doctor/doctor.html', context)
+    return render(request, 'doctor/dashboard.html', context)
 
 
 def AddDoctor(request):

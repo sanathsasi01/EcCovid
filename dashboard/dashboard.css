@@ -1,0 +1,125 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-image: url("images/v870-tang-36.jpg");
+
+  background-size: cover;
+
+  background-attachment: fixed;
+}
+
+.nav {
+  background-color: #98d4ca;
+}
+
+.navbar-nav {
+  margin-top: 20px;
+  margin-left: 44px;
+}
+table {
+  width: 100%;
+  margin-top: 71px;
+}
+tr {
+  background-color: #dddddde3;
+  height: 60px;
+}
+
+#btn-1 {
+  width: 148px;
+  height: 44px;
+  background: #f0fff0;
+  border: none;
+  color: rgba(59, 58, 58, 0.404);
+  font-size: 10px;
+}
+
+.red {
+  background-color: red;
+}
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color:lightgreen;
+}
+select {
+  width: 95px;
+}
+
+#none {
+  background-color: white;
+}
+
+.daiy-cases-td {
+  overflow-x: scroll;
+  display: flex;
+  width: 400px;
+}
+.show {
+  padding: 10px;
+}
+.row-spacer {
+  height: 30px;
+}
+
+#btn-1:focus {
+  box-shadow: none;
+}
+th {
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.479);
+}
+
+td {
+  font-size: 12px;
+}
+
+th {
+  text-align: center;
+}
+tr {
+  text-align: center;
+}
+.search-box {
+  margin-right: 227px;
+
+  padding-top: 17px;
+}
+.card {
+  
+  
+  width: 248.39px;
+  height: 97.5px;
+  border-radius: 25px;
+  box-shadow: -3px 1px 0px #faadda;
+}
+
+
+
+
+.bed-text{
+
+ color:#4B4279 ; 
+
+
+}
+.highlight{
+
+  color:blue !important;
+
+  border-bottom: 2px solid blue;
+
+
+}
+
+.number-text{
+
+color: #FF0000;
+
+font-weight: 900;
+
+}

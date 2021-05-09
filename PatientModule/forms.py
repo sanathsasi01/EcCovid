@@ -198,6 +198,32 @@ class MicrobiologyForm(forms.ModelForm):
         }
 
 
+class TreatmentForm(forms.ModelForm):
+
+    choice = (
+        ('1','1'),
+        ('2','2'),
+        ('3','3'),
+        ('4','4'),
+        ('5','5'),
+        ('6','6'),
+        ('7','7'),
+        ('8','8'),
+        ('9','9'),
+        ('10','10'),
+        ('11','11'),
+        ('12','12'),
+    )
+
+
+    o2 = forms.ChoiceField(choices=choice)
+    nebulisation_budocort_qh = forms.ChoiceField(choices=choice)
+    nebulisation_duolin_qh = forms.ChoiceField(choices=choice)
+    class Meta:
+        model = Treatment
+        exclude = ('patient',)
+
+
 
 
 

@@ -191,7 +191,66 @@ class Microbiology(models.Model):
     viral_culture_result2 = models.CharField(max_length=20, null=True)
 
     
+class Treatment(models.Model):
+    patient = models.ForeignKey(PatientDetails, on_delete=models.CASCADE)
+    # first row
+    o2 = models.IntegerField()
+    nasalcannula = models.BooleanField(default=False, blank=True)
+    hudson_mask = models.BooleanField(default=False, blank=True)
+    nrbm = models.BooleanField(default=False, blank=True)
+    niv = models.BooleanField(default=False, blank=True)
+    niv_f102 = models.BooleanField(default=False, blank=True)
+    niv_peep = models.BooleanField(default=False, blank=True)
+    niv_rr = models.BooleanField(default=False, blank=True)
+    niv_ps = models.BooleanField(default=False, blank=True)
 
+    # second set
+    inj_remdesivir = models.BooleanField(default=False, blank=True)
+    tab_favipiravir = models.BooleanField(default=False, blank=True)
+    
+    inj_lmwh = models.BooleanField(default=False, blank=True)
+    inj_lmwh_40mg = models.BooleanField(default=False, blank=True)
+    inj_lmwh_40mg_od_bd = models.BooleanField(default=False, blank=True)
+    inj_lmwh_60mg = models.BooleanField(default=False, blank=True)
+    inj_lmwh_60mg_od_bd = models.BooleanField(default=False, blank=True)
+
+    inj_dexamethaxone = models.BooleanField(default=False, blank=True)
+    inj_dexamethaxone_40mg = models.BooleanField(default=False, blank=True)
+    inj_dexamethaxone_40mg_odbd = models.BooleanField(default=False, blank=True)
+
+    pantaprozole_40mg = models.BooleanField(default=False, blank=True)
+    pantaprozole_40mg_bd = models.BooleanField(default=False, blank=True)
+
+    emeset_4g = models.BooleanField(default=False, blank=True)
+    emeset_4g_tds = models.BooleanField(default=False, blank=True)
+
+    inj_ulinastatin = models.BooleanField(default=False, blank=True)
+    inj_ulinastatin_bd = models.BooleanField(default=False, blank=True)
+    inj_ulinastatin_tds = models.BooleanField(default=False, blank=True)
+
+    t_pirfenidone_200mg = models.BooleanField(default=False, blank=True)
+    t_pirfenidone_200mg_bd = models.BooleanField(default=False, blank=True)
+
+    t_vitaminc_500mg = models.BooleanField(default=False, blank=True)
+    t_vitaminc_500mg_tds = models.BooleanField(default=False, blank=True)
+
+    t_zincovit_40mg = models.BooleanField(default=False, blank=True)
+    t_zincovit_40mg_od = models.BooleanField(default=False, blank=True)
+
+    t_nac_600mg = models.BooleanField(default=False, blank=True)
+    t_nac_600mg_bd = models.BooleanField(default=False, blank=True)
+
+    nebulisation = models.BooleanField(default=False, blank=True)
+    nebulisation_budocort = models.BooleanField(default=False, blank=True)
+    nebulisation_budocort_qh = models.IntegerField( blank=True)
+    nebulisation_duolin = models.BooleanField(default=False, blank=True)
+    nebulisation_duolin_qh = models.IntegerField(default=False, blank=True)
+
+
+
+
+    prone_ventilation = models.BooleanField(default=False, blank=True)
+    spirometer_excercise = models.BooleanField(default=False, blank=True)
 
 
 

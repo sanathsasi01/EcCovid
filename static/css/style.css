@@ -1,0 +1,253 @@
+#login-page {
+  background-image: url("/static/images/doctor.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+
+}
+
+.container{
+  height: 97vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 30%!important;
+}
+
+
+#login-username{
+ border:none;
+ background: none;
+ border-bottom: 1px solid white;
+ width: 350px;
+ padding: 10px 5px;
+
+}
+
+#login-password{
+    border:none;
+    background: none;
+    border-bottom: 1px solid white;
+    /* margin-top: 12px; */
+    outline: none;
+    width: 350px;
+    margin-top: 45px;
+    padding: 10px 5px;
+}
+#login-checkbox{
+    margin-top: 33px;
+}
+#login-password, #login-username:focus {
+  outline: none;
+}
+
+.r-checkbox{
+  display: inline
+}
+.forget-text{
+  padding-left: 120px;
+}
+
+ 
+#login-button{
+  display: block;
+  margin: 30px auto 50px;
+  padding: 10px;
+  width:120px;
+  font-weight: bold;
+  background-color: blue;
+  border: none;
+  color: white;
+  font-size: medium;
+}
+
+#remember-me {
+  margin: 15px 0;
+}
+
+#login-head {
+  margin: 15px;
+}
+
+#login-head p {
+  color: grey;
+}
+
+
+#covid-warriors {
+  margin-top: 80px;
+}
+#covid-warriors p{
+  margin: auto;
+  text-align: center;
+  line-height: 30px;
+  font-size: x-large;
+  color: gray;
+}
+#covid-warriors p b {
+  color: rgb(49, 48, 48);
+}
+
+#powered-by-text {
+  color: gray;
+  position: fixed;
+  bottom: 10px;
+}
+
+.respiratory {
+  border: 1px solid red;
+}
+
+/* remove  radio select dots */
+* {
+  list-style: none;
+  font-family: "Roboto", sans-serif;
+
+}
+
+/* doctor dashboard styles */
+
+
+
+#dashboard-container {
+  background-image: url("/static/images/v870-tang-36.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+}
+
+.nav {
+  background-color: #98d4ca;
+}
+
+.navbar-nav {
+  margin-top: 20px;
+  margin-left: 44px;
+}
+
+table {
+  width: 100%;
+  margin-top: 71px;
+}
+
+tr {
+  background-color: #dddddde3;
+  height: 60px;
+}
+
+#btn-1 {
+  width: 148px;
+  height: 44px;
+  background: #f0fff0;
+  border: none;
+  color: rgba(59, 58, 58, 0.404);
+  font-size: 10px;
+}
+
+.red {
+  background-color: red;
+}
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color:lightgreen;
+}
+#select {
+  width: 95px;
+}
+#select:focus {
+  outline: none;
+}
+
+#none {
+  background-color: white;
+}
+
+.daiy-cases-td {
+  overflow-x: scroll;
+  display: flex;
+  width: 400px;
+}
+
+.show {
+  padding: 10px;
+}
+
+.row-spacer {
+  height: 30px;
+}
+
+#btn-1:focus {
+  outline: none;
+}
+
+
+th {
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.479);
+}
+
+td {
+  /* font-size: 12px; */
+  font-size: 15px;
+}
+
+th {
+  text-align: center;
+}
+
+
+tr {
+  text-align: center;
+}
+
+
+.search-box {
+  margin-right: 227px;
+  padding-top: 17px;
+}
+
+
+.card {
+  width: 248.39px;
+  height: 97.5px;
+  border-radius: 25px!important;
+  box-shadow: -3px 1px 0px #faadda;
+}
+
+.bed-text{
+ color:#4B4279 ; 
+}
+.highlight{
+  color:blue !important;
+  border-bottom: 2px solid blue;
+}
+
+.number-text{
+  color: #FF0000;
+  font-weight: 900;
+}
+
+.dropdown-menu li {
+  padding-left: 50px;
+}
+
+.dropdown-menu {
+  width: 80px!important;
+}
+
+#select_roomtype:focus {
+  outline: none;
+}
+
+#table-row {
+  height: 10px!important;
+}
+
+#dashboard-table-container {
+  padding: 2px;
+}

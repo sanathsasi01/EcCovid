@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="dashboard.css" />
+    <title>Hello, world!</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light nav">
+      <a class="navbar-brand navbar-logo" href="#"
+        ><img src="images/Group 1.png" style="width: 167.31px; height: 73.33px"
+      /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active px-5">
+            <a class="nav-link highlight" href="#">
+              View Patient List <span class="sr-only">(current)</span></a
+            >
+          </li>
+
+          <li class="nav-item active px-5">
+            <a class="nav-link" href="#"
+              >Add New Patient List <span class="sr-only">(current)</span></a
+            >
+          </li>
+
+          <li class="nav-item active px-5">
+            <a class="nav-link" href="#"
+              >Daily Report <span class="sr-only">(current)</span></a
+            >
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0 search-box">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+    </nav>
+
+    <div
+      class="container-fluid d-flex flex-column justify-content-center align-items-center pt-5"
+    >
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body text-center">
+              <p class="bed-text">Total Bed Free<br /></p>
+              <p class="number-text">200</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row pt-3">
+        <div
+          class="col d-flex flex-column justify-content-center align-items-center px-4"
+        >
+          <p>6</p>
+          <p>Ventilator</p>
+        </div>
+        <div
+          class="col d-flex flex-column justify-content-center align-items-center px-4"
+        >
+          <p>4</p>
+          <p>HFNC</p>
+        </div>
+        <div
+          class="col d-flex flex-column justify-content-center align-items-center px-4"
+        >
+          <p>90</p>
+          <p>oxygen</p>
+        </div>
+        <div
+          class="col d-flex flex-column justify-content-center align-items-center px-4"
+        >
+          <p>110</p>
+          <p>Ward</p>
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <!-- table -->
+      <tr>
+        <th>SL NO</th>
+        <th>NAME</th>
+        <th>AGE</th>
+
+        <th>SEX</th>
+
+        <th>ROOM TYPE</th>
+
+        <th>DATE OF ADMISSION</th>
+
+        <th>CRITICALITY</th>
+        <th>DAILY CASE SHEET</th>
+        <th>DEATH REPORT</th>
+      </tr>
+
+      <tr class="row-spacer"></tr>
+      <tr>
+        <td>1</td>
+        <td>sameer shamsudheen</td>
+        <td>23</td>
+        <td>Male</td>
+        <td>
+          <select name="room_type" id="select_roomtype">
+            <option value="">Ward</option>
+
+            <optgroup label="Oxygen">
+              <option value="">Ventilator</option>
+              <option value="">HCNF</option>
+            </optgroup>
+          </select>
+        </td>
+
+        <td>01/08/2021</td>
+        <td>
+          <select name="criticality" class="criticality">
+            <option value="recovered" class="green" selected></option>
+            <option value="warning" class="yellow"></option>
+            <option value="critical" class="red"></option>
+          </select>
+        </td>
+        <td>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="button-group">
+                  <button
+                    type="button"
+                    class="btn btn-default btn-sm dropdown-toggle"
+                    data-toggle="dropdown"
+                  >
+                    <span>Select Day</span> <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a
+                        href="#"
+                        class="small"
+                        data-value="option1"
+                        tabindex="-1"
+                        ><input type="checkbox" />&nbsp;Day 1</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="small"
+                        data-value="option2"
+                        tabindex="-1"
+                        ><input type="checkbox" />&nbsp;Day 2</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="small"
+                        data-value="option3"
+                        tabindex="-1"
+                        ><input type="checkbox" />&nbsp;Day 3</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="small"
+                        data-value="option4"
+                        tabindex="-1"
+                        ><input type="checkbox" />&nbsp;Day 4</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="small"
+                        data-value="option5"
+                        tabindex="-1"
+                        ><input type="checkbox" />&nbsp;Day 5</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="small"
+                        data-value="option6"
+                        tabindex="-1"
+                        ><input type="checkbox" />&nbsp;Day 6</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="small"
+                        data-value="option1"
+                        tabindex="-1"
+                        ><input type="checkbox" />&nbsp;Day 7</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="small"
+                        data-value="option2"
+                        tabindex="-1"
+                        ><input type="checkbox" />&nbsp;Day 8</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="small"
+                        data-value="option3"
+                        tabindex="-1"
+                        ><input type="checkbox" />&nbsp;Day 9</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="small"
+                        data-value="option4"
+                        tabindex="-1"
+                        ><input type="checkbox" />&nbsp;Day 10</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="small"
+                        data-value="option5"
+                        tabindex="-1"
+                        ><input type="checkbox" />&nbsp;Day 11</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="small"
+                        data-value="option6"
+                        tabindex="-1"
+                        ><input type="checkbox" />&nbsp;Day 12</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="small"
+                        data-value="option1"
+                        tabindex="-1"
+                        ><input type="checkbox" />&nbsp;Day 13</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="small"
+                        data-value="option2"
+                        tabindex="-1"
+                        ><input type="checkbox" />&nbsp;Day 14</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td><button id="btn-1">Expired</button></td>
+      </tr>
+    </table>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      $(document).ready(function () {
+        $(".criticality").change(function () {
+          console.log(this.value);
+          if (this.value === "recovered") {
+            $(".criticality").css("background-color", "lightgreen");
+          } else if (this.value === "warning") {
+            $(".criticality").css("background-color", "yellow");
+          } else if (this.value === "critical") {
+            $(".criticality").css("background-color", "red");
+          } else {
+            $(".criticality").css("background-color", "white");
+          }
+        });
+      });
+    </script>
+    <script>
+      var options = [];
+
+      $(".dropdown-menu a").on("click", function (event) {
+        var $target = $(event.currentTarget),
+          val = $target.attr("data-value"),
+          $inp = $target.find("input"),
+          idx;
+
+        if ((idx = options.indexOf(val)) > -1) {
+          options.splice(idx, 1);
+          setTimeout(function () {
+            $inp.prop("checked", false);
+          }, 0);
+        } else {
+          options.push(val);
+          setTimeout(function () {
+            $inp.prop("checked", true);
+          }, 0);
+        }
+
+        $(event.target).blur();
+
+        console.log(options);
+        return false;
+      });
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        $("#btn-1").click(function () {
+          $("#btn-1").css("background-color", "red");
+          $((this.innerHTML = "Death Report"));
+        });
+      });
+    </script>
+  </body>
+</html>
