@@ -44,6 +44,45 @@
                 <h3>SIGNS</h3>
                 {{PatientSignsForm.as_p}}
                 <hr>
+                <h3>Past history</h3>
+                {{PatientPastHistoryForm.as_p}}
+                <hr>
+                <h3>General Examination</h3>
+                {{PatientExaminationForm.as_p}}
+                <!-- {% for choice in PatientExaminationForm.respiratory_system %}
+                    {{choice.choice_label}}
+                    <span style="margin-right: 300px;"> {{choice.tag}}</span>
+                {% endfor %}
+                <br>
+                {{PatientExaminationForm.respiratory_normal}} -->
+                <hr>
+                <h3>Differential diagnosis</h3>
+                {{PatientDifferentialDiagnosisForm.as_p}}
+                <hr>
+                <h3> HEalth facalities </h3>
+                <input type="text" name="facalityname1" class="">
+                <input type="date" name="date1" class="">
+                <textarea name="treatment1" class="" cols="20" rows="5"></textarea>
+                <textarea name="remark1" class="" cols="20" rows="5"></textarea>
+                    <br>
+                <input type="text" name="facalityname2" class="">
+                <input type="date" name="date2" class="">
+                <textarea name="treatment2" class="" cols="20" rows="5"></textarea>
+                <textarea name="remark2" class="" cols="20" rows="5"></textarea>
+                    <br>
+                <input type="text" name="facalityname3" class="">
+                <input type="date" name="date3" class="">
+                <textarea name="treatment3" class="" cols="20" rows="5"></textarea>
+                <textarea name="remark3" class="" cols="20" rows="5"></textarea>
+                    <br>
+                <input type="text" name="facalityname4" class="">
+                <input type="date" name="date4" class="">
+                <textarea name="treatment4" class="" cols="20" rows="5"></textarea>
+                <textarea name="remark4" class="" cols="20" rows="5"></textarea>
+                    <br>
+                <hr>
+                <h3> Microbiology </h3>
+                {{PatientMicrobiologyForm.as_p}}
 
             <button type="submit">Add Patient</button>
         </form>

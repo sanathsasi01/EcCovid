@@ -37,12 +37,12 @@ class AddPatient(forms.ModelForm):
             ('male',"Male"),
             ('female',"Female"),
             ('other',"Other")
-        )
+    )
     criticality_choice = (
             ('low',"Low"),
             ('medium',"Medium"),
             ('high',"High")
-        )
+    )
     sex = forms.ChoiceField(choices=sex_choice)
     criticallity = forms.ChoiceField(choices=criticality_choice)
     swab_taken = forms.TypedChoiceField(
@@ -116,10 +116,86 @@ class SignsForm(forms.ModelForm):
 
 
 
+class PastHistoryForm(forms.ModelForm):
+    class Meta:
+        model = PastHistory
+        exclude = ('patient',)
 
 
+class ExaminationForm(forms.ModelForm):
+    choices = (
+        ('normal','Normal'),
+        ('abnormal','Abnormal'),
+    )
+
+    respiratory_system = forms.ChoiceField(
+        choices=choices,
+        widget=forms.RadioSelect
+    )
+    cardiovascular_system = forms.ChoiceField(
+        choices=choices,
+        widget=forms.RadioSelect
+    )
+    gastrointestinal = forms.ChoiceField(
+        choices=choices,
+        widget=forms.RadioSelect
+    )
+    cns = forms.ChoiceField(
+        choices=choices,
+        widget=forms.RadioSelect
+    )
+
+    respiratory_choices = (
+        ('','select'),
+        ('BILATERAL AIR ENTRY','BILATERAL AIR ENTRY'),
+        ('NVBS','NVBS'),
+        ('NO ADDED SOUNDS','NO ADDED SOUNDS')
+    )
+    cardiovascular_choices = (
+        ('','select'),
+        ('S1 + S2', 'S1 + S2'),
+        ('NO MURMYRS', 'NO MURMYRS'),
+    )
+    gastro_choices = (
+        ('','select'),
+        ('SOFT, NON-TENDER', 'SOFT, NON-TENDER'),
+        ('BS+', 'BS+'),
+    )
+    cns_choices = (
+        ('','select'),
+        ('HMF N', 'HMF N'),
+        ('NO FND', 'NO FND'),
+        ('GCS:15/15', 'GCS:15/15'),
+    )
+
+    respiratory_normal = forms.ChoiceField(choices=respiratory_choices)
+    cardiovascular_normal = forms.ChoiceField(choices=cardiovascular_choices)
+    gastrointestinal_normal = forms.ChoiceField(choices=gastro_choices)
+    cns_normal = forms.ChoiceField(choices=cns_choices)
 
 
+    class Meta:
+        model = Examination
+        exclude = ('patient',)
+
+
+class DifferentialDiagnosisForm(forms.ModelForm):
+    class Meta:
+        model = DifferentialDiagnosis
+        exclude = ('patient',)
+
+
+class MicrobiologyForm(forms.ModelForm):
+    class Meta:
+        model = Microbiology
+        exclude = ('patient',)
+        widgets = {
+            'rt_pcr_covid_date': DateInput(),
+            'rapid_anti_body_date' : DateInput(),
+            'rt_pcr_H1N_date': DateInput(),
+            'viral_culture_date' : DateInput(),
+            'viral_culture_date2' : DateInput()
+        }
 
 
 
