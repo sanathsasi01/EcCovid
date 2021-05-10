@@ -104,7 +104,7 @@
 * {
   list-style: none;
   font-family: "Roboto", sans-serif;
-
+  scroll-behavior: smooth;
 }
 
 /* doctor dashboard styles */
@@ -115,7 +115,8 @@
   background-image: url("/static/images/v870-tang-36.jpg");
   background-size: cover;
   background-attachment: fixed;
-  height: 100vh;
+  /* background-position: center; */
+  height: 100%;
 }
 
 .nav {
@@ -147,10 +148,10 @@ tr {
 }
 
 .red {
-  background-color: red;
+  background-color: red!important;
 }
 .yellow {
-  background-color: yellow;
+  background-color: yellow!important;
 }
 
 .green {
@@ -250,4 +251,12 @@ tr {
 
 #dashboard-table-container {
   padding: 2px;
+}
+
+.patientid {
+    display: none;
+}
+
+.criticality option{
+  color: white;
 }

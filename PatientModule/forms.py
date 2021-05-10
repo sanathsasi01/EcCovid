@@ -18,14 +18,17 @@ class AddPatient(forms.ModelForm):
         ('Negative','Negative')
     )
     swab_taken = forms.TypedChoiceField(
+        required=False,
         choices=choices,
         widget=forms.RadioSelect
     )
     hrct_taken = forms.TypedChoiceField(
+        required=False,
         choices=choices,
         widget=forms.RadioSelect
     )
     ct_thorax_taken = forms.TypedChoiceField(
+        required=False,
         choices=choices,
         widget=forms.RadioSelect
     )
@@ -34,6 +37,7 @@ class AddPatient(forms.ModelForm):
         widget=forms.RadioSelect
     )
     sex_choice = (
+            ('','select'),
             ('male',"Male"),
             ('female',"Female"),
             ('other',"Other")
@@ -43,24 +47,26 @@ class AddPatient(forms.ModelForm):
             ('medium',"Medium"),
             ('high',"High")
     )
-    sex = forms.ChoiceField(choices=sex_choice)
+    sex = forms.ChoiceField(choices=sex_choice, required=True)
     criticallity = forms.ChoiceField(choices=criticality_choice)
-    swab_taken = forms.TypedChoiceField(
-        choices=choices,
-        widget=forms.RadioSelect
-    )
-    hrct_taken = forms.TypedChoiceField(
-        choices=choices,
-        widget=forms.RadioSelect
-    )
-    ct_thorax_taken = forms.TypedChoiceField(
-        choices=choices,
-        widget=forms.RadioSelect
-    )
+    # swab_taken = forms.TypedChoiceField(
+    #     choices=choices,
+    #     widget=forms.RadioSelect
+    # )
+    # hrct_taken = forms.TypedChoiceField(
+    #     choices=choices,
+    #     widget=forms.RadioSelect
+    # )
+    # ct_thorax_taken = forms.TypedChoiceField(
+    #     choices=choices,
+    #     widget=forms.RadioSelect
+    # )
     positive_or_negative = forms.TypedChoiceField(
+        required=False,
         choices=choices,
         widget=forms.RadioSelect
     )
+    icmr_id = forms.CharField(required=True)
     class Meta:
         model = PatientDetails
         fields = '__all__'
@@ -68,7 +74,7 @@ class AddPatient(forms.ModelForm):
             'dob': DateInput(),
             'dateAdmitted' : DateInput(),
             'ct_thorax_date': DateInput(),
-            'date_of_test' : DateInput()
+            'date_of_test' : DateInput(),
         }
 
 # case Sheet form
@@ -88,22 +94,22 @@ class SymptomsForm(forms.ModelForm):
         }
 
 class SignsForm(forms.ModelForm):
-    pulse_rate = forms.CharField(
+    pulse_rate = forms.CharField(required=False,
                            widget= forms.TextInput
                            (attrs={'placeholder':'/MIN'}))
-    blood_pressure = forms.CharField(
+    blood_pressure = forms.CharField(required=False,
                            widget= forms.TextInput
                            (attrs={'placeholder':'/MM OF HG'}))
-    respiratory_rate = forms.CharField(
+    respiratory_rate = forms.CharField(required=False,
                            widget= forms.TextInput
                            (attrs={'placeholder':'/MIN'}))    
-    spo2 =  forms.CharField(
+    spo2 =  forms.CharField(required=False,
                            widget= forms.TextInput
                            (attrs={'placeholder':'%RA'}))
-    cbg =  forms.CharField(
+    cbg =  forms.CharField(required=False,
                            widget= forms.TextInput
                            (attrs={'placeholder':'MG/DC'}))
-    temperature =  forms.CharField(
+    temperature =  forms.CharField(required=False,
                            widget= forms.TextInput
                            (attrs={'placeholder':'/F'}))
 
@@ -129,18 +135,22 @@ class ExaminationForm(forms.ModelForm):
     )
 
     respiratory_system = forms.ChoiceField(
+        required=False,
         choices=choices,
         widget=forms.RadioSelect
     )
     cardiovascular_system = forms.ChoiceField(
+        required=False,
         choices=choices,
         widget=forms.RadioSelect
     )
     gastrointestinal = forms.ChoiceField(
+        required=False,
         choices=choices,
         widget=forms.RadioSelect
     )
     cns = forms.ChoiceField(
+        required=False,
         choices=choices,
         widget=forms.RadioSelect
     )
@@ -168,10 +178,10 @@ class ExaminationForm(forms.ModelForm):
         ('GCS:15/15', 'GCS:15/15'),
     )
 
-    respiratory_normal = forms.ChoiceField(choices=respiratory_choices)
-    cardiovascular_normal = forms.ChoiceField(choices=cardiovascular_choices)
-    gastrointestinal_normal = forms.ChoiceField(choices=gastro_choices)
-    cns_normal = forms.ChoiceField(choices=cns_choices)
+    respiratory_normal = forms.ChoiceField(choices=respiratory_choices,required=False)
+    cardiovascular_normal = forms.ChoiceField(choices=cardiovascular_choices,required=False)
+    gastrointestinal_normal = forms.ChoiceField(choices=gastro_choices,required=False)
+    cns_normal = forms.ChoiceField(choices=cns_choices,required=False)
 
 
     class Meta:

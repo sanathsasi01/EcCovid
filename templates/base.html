@@ -40,5 +40,26 @@
   ></script>
   <!-- external js file -->
   <script src="/static/js/main.js"></script>
+  <script>
+    $(document).ready(function () {
+   
+   // ajax criticalityChange
+
+   $(".criticality").change(function() {
+       // console.log("changed");
+       let newCriticality = $(this).val();
+       let patientId = $(this).next().text();
+       let url = "{% url 'criticalityChange' %}"
+       $.ajax({
+           type : 'GET',
+           url : url,
+           data : {
+             'newCriticality' : newCriticality,
+             'patientId' : patientId         
+            }
+       })
+   })
+    });
+  </script>
 </body>
 </html>

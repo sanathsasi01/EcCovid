@@ -6,7 +6,7 @@ import datetime
 User = get_user_model()
 
 class PatientDetails(models.Model):
-    doctor = models.ForeignKey(User, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=30, null=True)
     age = models.CharField(max_length=3, null=True)
     sex = models.CharField(max_length=10, null=True)
@@ -16,7 +16,7 @@ class PatientDetails(models.Model):
     personal_mobile_no = models.CharField(null=True,max_length=10)
     bystander_mobile_no = models.CharField(null=True,max_length=10)
     dateAdmitted = models.DateTimeField(null=True)
-    criticallity = models.CharField(max_length=10, null=True)
+    criticallity = models.CharField(max_length=20, null=True)
 
     swab_taken = models.CharField(max_length=3, null=True, blank=True)
     hrct_taken = models.CharField(max_length=3, null=True, blank=True)
@@ -60,12 +60,12 @@ class Symptoms(models.Model):
 class Signs(models.Model):
     patient = models.ForeignKey(PatientDetails, on_delete=models.CASCADE)
 
-    pulse_rate = models.CharField(max_length=20, null=True)
-    blood_pressure = models.CharField(max_length=20, null=True)
-    respiratory_rate = models.CharField(max_length=20, null=True)
-    spo2 = models.CharField(max_length=20, null=True)
-    temperature = models.CharField(max_length=20, null=True)
-    cbg = models.CharField(max_length=20, null=True)
+    pulse_rate = models.CharField(max_length=20, null=True, blank=True)
+    blood_pressure = models.CharField(max_length=20, null=True, blank=True)
+    respiratory_rate = models.CharField(max_length=20, null=True, blank=True)
+    spo2 = models.CharField(max_length=20, null=True, blank=True)
+    temperature = models.CharField(max_length=20, null=True, blank=True)
+    cbg = models.CharField(max_length=20, null=True, blank=True)
     
 
 
@@ -73,59 +73,59 @@ class PastHistory(models.Model):
     patient = models.ForeignKey(PatientDetails, on_delete=models.CASCADE)
 
     systematic_hypertension = models.BooleanField(default=False)
-    systematic_hypertension_year = models.CharField(max_length=4 , null=True)
+    systematic_hypertension_year = models.CharField(max_length=4 , null=True, blank=True)
     systematic_hypertension_treatment = models.CharField(max_length=20, null=True, blank=True)
 
     diabetes_mellitess = models.BooleanField(default=False)
-    diabetes_mellitess_year = models.CharField(max_length=4 , null=True)
+    diabetes_mellitess_year = models.CharField(max_length=4 , null=True, blank=True)
     diabetes_mellitess_treatment = models.CharField(max_length=20, null=True, blank=True)
 
     bronchial_asthma = models.BooleanField(default=False)
-    bronchial_asthma_year = models.CharField(max_length=4 , null=True)
+    bronchial_asthma_year = models.CharField(max_length=4 , null=True, blank=True)
     bronchial_asthma_treatment = models.CharField(max_length=20, null=True, blank=True)
 
     chronic_kidney_disease = models.BooleanField(default=False)
-    chronic_kidney_disease_year = models.CharField(max_length=4 , null=True)
+    chronic_kidney_disease_year = models.CharField(max_length=4 , null=True, blank=True)
     chronic_kidney_disease_treatment = models.CharField(max_length=20, null=True, blank=True)
 
     copd = models.BooleanField(default=False)
-    copd_year = models.CharField(max_length=4 , null=True)
+    copd_year = models.CharField(max_length=4 , null=True, blank=True)
     copd_treatment = models.CharField(max_length=20, null=True, blank=True)
 
     hiv = models.BooleanField(default=False)
-    hiv_year = models.CharField(max_length=4 , null=True)
+    hiv_year = models.CharField(max_length=4 , null=True, blank=True)
     hiv_treatment = models.CharField(max_length=20, null=True, blank=True)
 
     hepatitis_b = models.BooleanField(default=False)
-    hepatitis_b_year = models.CharField(max_length=4 , null=True)
+    hepatitis_b_year = models.CharField(max_length=4 , null=True, blank=True)
     hepatitis_b_treatment = models.CharField(max_length=20, null=True, blank=True)
 
     hepatitis_c = models.BooleanField(default=False)
-    hepatitis_c_year = models.CharField(max_length=4 , null=True)
+    hepatitis_c_year = models.CharField(max_length=4 , null=True, blank=True)
     hepatitis_c_treatment = models.CharField(max_length=20, null=True, blank=True)
 
     abdominal_pain = models.BooleanField(default=False)
-    abdominal_pain_year = models.CharField(max_length=4 , null=True)
+    abdominal_pain_year = models.CharField(max_length=4 , null=True, blank=True)
     abdominal_pain_treatment = models.CharField(max_length=20, null=True, blank=True)
 
     diarrhea = models.BooleanField(default=False)
-    diarrhea_year = models.CharField(max_length=4 , null=True)
+    diarrhea_year = models.CharField(max_length=4 , null=True, blank=True)
     diarrhea_treatment = models.CharField(max_length=20, null=True, blank=True)
 
     jaundice = models.BooleanField(default=False)
-    jaundice_year = models.CharField(max_length=4 , null=True)
+    jaundice_year = models.CharField(max_length=4 , null=True, blank=True)
     jaundice_treatment = models.CharField(max_length=20, null=True, blank=True)
 
     malignancy = models.BooleanField(default=False)
-    malignancy_year = models.CharField(max_length=4 , null=True)
+    malignancy_year = models.CharField(max_length=4 , null=True, blank=True)
     malignancy_treatment = models.CharField(max_length=20, null=True, blank=True)
 
     past_history = models.BooleanField(default=False)
-    past_history_year = models.CharField(max_length=4 , null=True)
+    past_history_year = models.CharField(max_length=4 , null=True, blank=True)
     past_history_treatment = models.CharField(max_length=20, null=True, blank=True)
 
     other_person_history = models.BooleanField(default=False)
-    other_person_year = models.CharField(max_length=4 , null=True)
+    other_person_year = models.CharField(max_length=4 , null=True, blank=True)
     other_person_treatment = models.CharField(max_length=20, null=True, blank=True)
 
 
@@ -140,21 +140,21 @@ class Examination(models.Model):
     lymphadenpathy = models.BooleanField(default=False)
     edema = models.BooleanField(default=False)
     # systematic examination
-    respiratory_system =  models.CharField(max_length=10, null=True)
-    respiratory_normal = models.CharField(max_length=30, null=True)
-    respiratory_abnormal = models.CharField(max_length=30, null=True)
+    respiratory_system =  models.CharField(max_length=10, null=True, blank=True)
+    respiratory_normal = models.CharField(max_length=30, null=True, blank=True)
+    respiratory_abnormal = models.CharField(max_length=30, null=True, blank=True)
 
-    cardiovascular_system = models.CharField(max_length=10, null=True)
-    cardiovascular_normal = models.CharField(max_length=30, null=True)
-    cardiovascular_abnormal = models.CharField(max_length=30, null=True)
+    cardiovascular_system = models.CharField(max_length=10, null=True, blank=True)
+    cardiovascular_normal = models.CharField(max_length=30, null=True, blank=True)
+    cardiovascular_abnormal = models.CharField(max_length=30, null=True, blank=True)
 
-    gastrointestinal = models.CharField(max_length=10, null=True)
-    gastrointestinal_normal = models.CharField(max_length=30, null=True)
-    gastrointestinal_abnormal = models.CharField(max_length=30, null=True)
+    gastrointestinal = models.CharField(max_length=10, null=True, blank=True)
+    gastrointestinal_normal = models.CharField(max_length=30, null=True, blank=True)
+    gastrointestinal_abnormal = models.CharField(max_length=30, null=True, blank=True)
 
-    cns = models.CharField(max_length=10, null=True)
-    cns_normal = models.CharField(max_length=30, null=True)
-    cns_abnormal = models.CharField(max_length=30, null=True)
+    cns = models.CharField(max_length=10, null=True, blank=True)
+    cns_normal = models.CharField(max_length=30, null=True, blank=True)
+    cns_abnormal = models.CharField(max_length=30, null=True, blank=True)
 
 
 class DifferentialDiagnosis(models.Model):
@@ -166,35 +166,35 @@ class DifferentialDiagnosis(models.Model):
 
 class HealthFacalities(models.Model):
     patient = models.ForeignKey(PatientDetails, on_delete=models.CASCADE, null=True)
-    Facalitiedvisited = models.CharField(max_length=50, null=True)
+    Facalitiedvisited = models.CharField(max_length=50, null=True, blank=True)
     date = models.DateField(null=True)
-    treatment = models.CharField(max_length=80, null=True)
-    remarks = models.CharField(max_length=100)
+    treatment = models.CharField(max_length=80, null=True, blank=True)
+    remarks = models.CharField(max_length=100, null=True, blank=True)
 
 
 class Microbiology(models.Model):
     patient = models.ForeignKey(PatientDetails, on_delete=models.CASCADE)
 
-    rt_pcr_covid_date = models.DateField(null=True)
-    rt_pcr_covid_result = models.CharField(max_length=20, null=True)
+    rt_pcr_covid_date = models.DateField(null=True, blank=True)
+    rt_pcr_covid_result = models.CharField(max_length=20, null=True, blank=True)
 
-    rapid_anti_body_date = models.DateField(null=True)
-    rapid_anti_body_date = models.CharField(max_length=20, null=True) 
+    rapid_anti_body_date = models.DateField(null=True, blank=True)
+    rapid_anti_body_date = models.CharField(max_length=20, null=True, blank=True) 
 
-    rt_pcr_H1N_date = models.DateField(null=True)
-    rt_pcr_H1N_result = models.CharField(max_length=20, null=True)
+    rt_pcr_H1N_date = models.DateField(null=True, blank=True)
+    rt_pcr_H1N_result = models.CharField(max_length=20, null=True, blank=True)
 
-    viral_culture_date = models.DateField(null=True)
-    viral_culture_result = models.CharField(max_length=20, null=True)
+    viral_culture_date = models.DateField(null=True, blank=True)
+    viral_culture_result = models.CharField(max_length=20, null=True, blank=True)
 
-    viral_culture_date2 = models.DateField(null=True)
-    viral_culture_result2 = models.CharField(max_length=20, null=True)
+    viral_culture_date2 = models.DateField(null=True, blank=True)
+    viral_culture_result2 = models.CharField(max_length=20, null=True, blank=True)
 
     
 class Treatment(models.Model):
     patient = models.ForeignKey(PatientDetails, on_delete=models.CASCADE)
     # first row
-    o2 = models.IntegerField()
+    o2 = models.IntegerField(null=True, blank=True)
     nasalcannula = models.BooleanField(default=False, blank=True)
     hudson_mask = models.BooleanField(default=False, blank=True)
     nrbm = models.BooleanField(default=False, blank=True)
@@ -242,9 +242,9 @@ class Treatment(models.Model):
 
     nebulisation = models.BooleanField(default=False, blank=True)
     nebulisation_budocort = models.BooleanField(default=False, blank=True)
-    nebulisation_budocort_qh = models.IntegerField( blank=True)
+    nebulisation_budocort_qh = models.IntegerField(null=True, blank=True)
     nebulisation_duolin = models.BooleanField(default=False, blank=True)
-    nebulisation_duolin_qh = models.IntegerField(default=False, blank=True)
+    nebulisation_duolin_qh = models.IntegerField(default=False,null=True, blank=True)
 
 
 
