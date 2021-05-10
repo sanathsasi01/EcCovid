@@ -5,8 +5,24 @@ import datetime
 
 User = get_user_model()
 
+class Beds(models.Model):
+    name = models.CharField(max_length=20, null=True)
+
+    def __str__(self):
+        return self.name 
+
+
+class bedCount(models.Model):
+    bed = models.ForeignKey(Beds,on_delete=models.CASCADE)
+    count = models.IntegerField(null=True)
+
+
+class FreeBeds(models.Model):
+    bed = models.ForeignKey(Beds, on_delete=models.CASCADE)
+    count = models.IntegerField(null=True)
+
 class PatientDetails(models.Model):
-    doctor = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    # doctor = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=30, null=True)
     age = models.CharField(max_length=3, null=True)
     sex = models.CharField(max_length=10, null=True)
@@ -17,6 +33,8 @@ class PatientDetails(models.Model):
     bystander_mobile_no = models.CharField(null=True,max_length=10)
     dateAdmitted = models.DateTimeField(null=True)
     criticallity = models.CharField(max_length=20, null=True)
+    bed = models.ForeignKey(Beds, on_delete=models.CASCADE, null=True)
+
 
     swab_taken = models.CharField(max_length=3, null=True, blank=True)
     hrct_taken = models.CharField(max_length=3, null=True, blank=True)
@@ -28,6 +46,8 @@ class PatientDetails(models.Model):
     ct_thorax_taken = models.CharField(max_length=3, null=True, blank=True)
     ct_thorax_date = models.DateField(null=True, blank=True)
 
+    def __str__(self):
+        return self.name
 
 class Symptoms(models.Model):
     patient = models.ForeignKey(PatientDetails, on_delete=models.CASCADE, null=True)
@@ -246,13 +266,8 @@ class Treatment(models.Model):
     nebulisation_duolin = models.BooleanField(default=False, blank=True)
     nebulisation_duolin_qh = models.IntegerField(default=False,null=True, blank=True)
 
-
-
-
     prone_ventilation = models.BooleanField(default=False, blank=True)
     spirometer_excercise = models.BooleanField(default=False, blank=True)
-
-
 
 
 

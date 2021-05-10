@@ -102,8 +102,7 @@ class User(AbstractBaseUser):
     objects = UserManager()
 
     def __str__(self):
-        if self.firstname != None:
-            return self.firstname + self.lastname
+        return self.firstname
 
     def has_perm(self, perm, obj=None):
         # Simplest possible answer: Yes, always

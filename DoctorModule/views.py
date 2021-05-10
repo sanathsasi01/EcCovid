@@ -4,7 +4,7 @@ from django.contrib import messages
 from AdminModule.forms import DoctorForm
 
 from PatientModule.forms import *
-from PatientModule.models import PatientDetails
+from PatientModule.models import *
 
 from DoctorModule.models import DoctorPatientRelation
 
@@ -33,6 +33,58 @@ def criticalityChange(request):
 
 
 def doctorPage(request):
+
+    # bed count section
+    # total bed's id
+    total = []
+    bedNames = Beds.objects.all()
+
+    for bedName in bedNames:
+        total.append(bedName.id)
+
+    #output total = [1,2,3,4]
+
+    # to store bed id and count as dictionary
+    bed_id_total_dict = {}
+
+    for ids in total:
+        bedx = bedCount.objects.get(bed=ids)
+        bed_in_use = PatientDetails.objects.filter(bed=ids).count()
+        bed_id_total_dict[ids] = bedx.count - bed_in_use
+
+    # print(bed_id_total_dict)
+
+    for bed,count in bed_id_total_dict.items():
+        freeBed_instance = FreeBeds.objects.filter(bed=bed).exists()
+        if freeBed_instance:
+            freeBed = FreeBeds.objects.get(bed=bed)
+            freeBed.count = count
+            freeBed.save()
+        else:
+            bed_instance = Beds.objects.get(id=bed)
+            FreeBed = FreeBeds(bed=bed_instance, count=count)
+            FreeBed.save()
+
+    # free beds will be stored in FreeBeds table
+
+    ventilator = FreeBeds.objects.get(bed=1).count
+    hfnc = FreeBeds.objects.get(bed=2).count
+    ward = FreeBeds.objects.get(id=3).count
+    oxygen = FreeBeds.objects.get(id=4).count
+
+    totalbedsFree = ventilator + hfnc + ward + oxygen
+
+
+
+
+
+
+
+
+
+
+
+
     doc_id = request.user.id
     # patients = PatientDetails.objects.filter(doctor=doc_id)
     patients = PatientDetails.objects.order_by('dateAdmitted')
@@ -110,6 +162,7 @@ def doctorPage(request):
         PatientMicrobiologyForm = MicrobiologyForm(use_required_attribute=False)
         patientTreatmentForm = TreatmentForm(use_required_attribute=False)
 
+
     context = {
         'patients' : patients,
         'AddPatientForm' : AddPatientForm,
@@ -120,7 +173,12 @@ def doctorPage(request):
         'PatientDifferentialDiagnosisForm' :PatientDifferentialDiagnosisForm,
         'PatientMicrobiologyForm' : PatientMicrobiologyForm,
         'patientTreatmentForm' : patientTreatmentForm,
-
+        # dashboard features
+        'ventilator' : ventilator,
+        'ward' : ward,
+        'oxygen' : oxygen,
+        'hfnc' : hfnc,
+        'totalbedsFree' : totalbedsFree
 
     }
     return render(request, 'doctor/dashboard.html', context)

@@ -62,7 +62,11 @@
                 <div class="card">
                   <div class="card-body text-center">
                     <p class="bed-text font-weight-bold">Total Bed Free<br /></p>
-                    <p class="number-text">200</p>
+                    <p class="number-text">
+                      <!-- available free total beds -->
+                      {{totalbedsFree}}
+                      <!-- 200 -->
+                    </p>
                   </div>
                 </div>
               </div>
@@ -76,31 +80,31 @@
               <div
                 class="col d-flex flex-column justify-content-center align-items-center px-4"
               >
-                <p class="font-weight-bold">6</p>
+                <p class="font-weight-bold"> {{ventilator}} </p>
                 <p>Ventilator</p>
               </div>
               <div
                 class="col d-flex flex-column justify-content-center align-items-center px-4"
               >
-                <p class="font-weight-bold">4</p>
+                <p class="font-weight-bold"> {{hfnc}} </p>
                 <p>HFNC</p>
               </div>
               <div
                 class="col d-flex flex-column justify-content-center align-items-center px-4"
               >
-                <p class="font-weight-bold">90</p>
+                <p class="font-weight-bold"> {{oxygen}} </p>
                 <p>oxygen</p>
               </div>
               <div
                 class="col d-flex flex-column justify-content-center align-items-center px-4"
               >
-                <p class="font-weight-bold">110</p>
+                <p class="font-weight-bold"> {{ward}} </p>
                 <p>Ward</p>
               </div>
             </div>
           </div>
       
-          <table>
+          <table >
             <!-- table -->
             <tr>
               <th>SL NO</th>
@@ -314,7 +318,9 @@
                     </div>
                   </div>
                 </td>
-                <td><button id="btn-1">Expired</button></td>
+                <td>
+                  <button id="btn-1">Expired</button>
+                </td>
               </tr>
             {% endfor %}
           </table>

@@ -48,6 +48,7 @@ class AddPatient(forms.ModelForm):
             ('high',"High")
     )
     sex = forms.ChoiceField(choices=sex_choice, required=True)
+    age = forms.IntegerField(required=True) #newly added
     criticallity = forms.ChoiceField(choices=criticality_choice)
     # swab_taken = forms.TypedChoiceField(
     #     choices=choices,
