@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'EcCovid.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'EcCovid2',
+        'NAME': 'EcCovid',
         'USER' : 'postgres',
         'PASSWORD' : '0480',
         'HOST' : 'localhost',

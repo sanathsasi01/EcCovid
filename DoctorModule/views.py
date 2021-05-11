@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 
 from AdminModule.forms import DoctorForm
+from django.http import JsonResponse
 
 from PatientModule.forms import *
 from PatientModule.models import *
@@ -14,64 +15,18 @@ User = get_user_model()
 
 
 
-def criticalityChange(request):
-    if request.is_ajax and request.method == 'GET':
-        newCriticality = request.GET.get('newCriticality', None)
-        # print(newCriticality)
-        patientid = request.GET.get('patientId', None)
-        # print(patientid)
-        try:
-            patient = PatientDetails.objects.get(id=patientid)
-            patient.criticallity = newCriticality
-            patient.save()
-            return HttpResponse("")
-        except:
-            messages.error(request, 'Something went wrong, try again')
-            return redirect('doctorPage')
 
         
 
 
 def doctorPage(request):
 
-    # bed count section
-    # total bed's id
-    total = []
-    bedNames = Beds.objects.all()
-
-    for bedName in bedNames:
-        total.append(bedName.id)
-
-    #output total = [1,2,3,4]
-
-    # to store bed id and count as dictionary
-    bed_id_total_dict = {}
-
-    for ids in total:
-        bedx = bedCount.objects.get(bed=ids)
-        bed_in_use = PatientDetails.objects.filter(bed=ids).count()
-        bed_id_total_dict[ids] = bedx.count - bed_in_use
-
-    # print(bed_id_total_dict)
-
-    for bed,count in bed_id_total_dict.items():
-        freeBed_instance = FreeBeds.objects.filter(bed=bed).exists()
-        if freeBed_instance:
-            freeBed = FreeBeds.objects.get(bed=bed)
-            freeBed.count = count
-            freeBed.save()
-        else:
-            bed_instance = Beds.objects.get(id=bed)
-            FreeBed = FreeBeds(bed=bed_instance, count=count)
-            FreeBed.save()
-
     # free beds will be stored in FreeBeds table
 
     ventilator = FreeBeds.objects.get(bed=1).count
     hfnc = FreeBeds.objects.get(bed=2).count
-    ward = FreeBeds.objects.get(id=3).count
-    oxygen = FreeBeds.objects.get(id=4).count
-
+    ward = FreeBeds.objects.get(bed=3).count
+    oxygen = FreeBeds.objects.get(bed=4).count
     totalbedsFree = ventilator + hfnc + ward + oxygen
 
 
@@ -87,7 +42,7 @@ def doctorPage(request):
 
     doc_id = request.user.id
     # patients = PatientDetails.objects.filter(doctor=doc_id)
-    patients = PatientDetails.objects.order_by('dateAdmitted')
+    patients = PatientDetails.objects.order_by('-dateAdmitted')
     if request.method == 'POST':
         AddPatientForm = AddPatient(request.POST)
         PatientSymptomsForm = SymptomsForm(request.POST)
@@ -142,14 +97,14 @@ def doctorPage(request):
 
             messages.success(request, 'patient added successfuly')
         else:
-            print(AddPatientForm.errors)
-            print(PatientSymptomsForm.errors)
-            print(PatientSignsForm.errors)
-            print(PatientPastHistoryForm.errors)
-            print(PatientExaminationForm.errors)
-            print(PatientDifferentialDiagnosisForm.errors)
-            print(PatientMicrobiologyForm.errors)
-            print(patientTreatmentForm.errors)
+            # print(AddPatientForm.errors)
+            # print(PatientSymptomsForm.errors)
+            # print(PatientSignsForm.errors)
+            # print(PatientPastHistoryForm.errors)
+            # print(PatientExaminationForm.errors)
+            # print(PatientDifferentialDiagnosisForm.errors)
+            # print(PatientMicrobiologyForm.errors)
+            # print(patientTreatmentForm.errors)
             messages.error(request, 'something went wrong, try again')
     else:
         # forms
@@ -205,6 +160,81 @@ def AddDoctor(request):
             else:
                 messages.error(request, 'Passwords does not match')
         return redirect('adminPage')
-            
-                    
 
+
+def criticalityChange(request):
+    if request.is_ajax and request.method == 'GET':
+        newCriticality = request.GET.get('newCriticality', None)
+        # print(newCriticality)
+        patientid = request.GET.get('patientId', None)
+        # print(patientid)
+        try:
+            patient = PatientDetails.objects.get(id=patientid)
+            patient.criticallity = newCriticality
+            patient.save()
+            return HttpResponse("")
+        except:
+            messages.error(request, 'Something went wrong, try again')
+            return redirect('doctorPage')
+
+def bedChange(request):
+
+    if request.is_ajax:
+        patientid = request.GET.get('patientId', None)
+        requested_bed_name = request.GET.get('newRoom', None)
+
+        try:
+            requested_bed = Beds.objects.get(name=requested_bed_name)
+
+            # check if selected room is available
+            checkAvailable = FreeBeds.objects.get(bed=requested_bed.id)
+        except:
+            messages.info(request, 'Something went wrong, try again !')
+            return redirect('doctorPage')
+        if checkAvailable.count != 0:
+            checkAvailable.count = checkAvailable.count-1
+            checkAvailable.save()
+            try:
+                patient = PatientDetails.objects.get(id=patientid)
+            except:
+                messages.info(request, 'Something went wrong, try again !')
+                return redirect('doctorPage')
+            # if patient is oppupied
+            if patient.bed is not None:
+                # free the current bed
+                # print(patient.bed.id)
+                try:
+                    freed_bed = FreeBeds.objects.get(bed=patient.bed.id)
+                    freed_bed.count =  freed_bed.count + 1    
+                    freed_bed.save()  
+                except:
+                    messages.info(request, 'Something went wrong, try again !')
+                    return redirect('doctorPage')
+
+            patient.bed = requested_bed
+            patient.save()
+
+            ventilator = FreeBeds.objects.get(bed=1).count
+            hfnc = FreeBeds.objects.get(bed=2).count
+            ward = FreeBeds.objects.get(bed=3).count
+            oxygen = FreeBeds.objects.get(bed=4).count
+
+            totalbedsFree = (ventilator + hfnc + ward + oxygen)
+
+            data = {
+                'success' : 'True',
+                'ventilator' : ventilator,
+                'hfnc' : hfnc,
+                'ward' : ward,
+                'oxygen' : oxygen,
+                'totalbedsFree' : totalbedsFree
+            } 
+            # return JsonResponse(data)
+        else:
+            data = {
+                'success' : 'False',
+            }
+        return JsonResponse(data)
+        
+
+    

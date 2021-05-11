@@ -62,7 +62,7 @@
                 <div class="card">
                   <div class="card-body text-center">
                     <p class="bed-text font-weight-bold">Total Bed Free<br /></p>
-                    <p class="number-text">
+                    <p class="number-text" id="totalbedsFree">
                       <!-- available free total beds -->
                       {{totalbedsFree}}
                       <!-- 200 -->
@@ -80,25 +80,25 @@
               <div
                 class="col d-flex flex-column justify-content-center align-items-center px-4"
               >
-                <p class="font-weight-bold"> {{ventilator}} </p>
+                <p class="font-weight-bold" id="ventilator"> {{ventilator}} </p>
                 <p>Ventilator</p>
               </div>
               <div
                 class="col d-flex flex-column justify-content-center align-items-center px-4"
               >
-                <p class="font-weight-bold"> {{hfnc}} </p>
+                <p class="font-weight-bold" id="hfnc"> {{hfnc}} </p>
                 <p>HFNC</p>
               </div>
               <div
                 class="col d-flex flex-column justify-content-center align-items-center px-4"
               >
-                <p class="font-weight-bold"> {{oxygen}} </p>
+                <p class="font-weight-bold" id="oxygen"> {{oxygen}} </p>
                 <p>oxygen</p>
               </div>
               <div
                 class="col d-flex flex-column justify-content-center align-items-center px-4"
               >
-                <p class="font-weight-bold"> {{ward}} </p>
+                <p class="font-weight-bold" id="ward"> {{ward}} </p>
                 <p>Ward</p>
               </div>
             </div>
@@ -130,15 +130,49 @@
                 <td>{{patient.age}}</td>
                 <td>{{patient.sex}}</td>
                 <td>
-                  <!-- needs modification -->
-                  <select name="room_type" id="select_roomtype">
-                    <option value="">Ward</option>
-                    <optgroup label="Oxygen">
-                      <option value="">Ventilator</option>
-                      <option value="">HCNF</option>
-                    </optgroup>
-                  </select>
-
+                  <!--  modification done-->
+                    {% if patient.bed.name == 'ward' %}
+                      <select name="room_type" class="select_roomtype">
+                        <option value='ward' selected>Ward</option>
+                        <option value='oxygen'>Oxygen</option>
+                        <option value='ventilator'>Ventilator</option>
+                        <option value='hfnc'>HFNC</option>
+                      </select>
+                      <span class="patientid">{{patient.id}}</span>
+                    {% elif  patient.bed.name == 'oxygen' %}
+                      <select name="room_type" class="select_roomtype">                    
+                        <option value='ward'>Ward</option>
+                        <option value='oxygen' selected>Oxygen</option>
+                        <option value='ventilator'>Ventilator</option>
+                        <option value='hfnc'>HCNF</option>
+                      </select>
+                      <span class="patientid">{{patient.id}}</span>
+                    {% elif  patient.bed.name == 'ventilator' %}
+                      <select name="room_type" class="select_roomtype">
+                        <option value='ward'>Ward</option>
+                        <option value='oxygen'>Oxygen</option>
+                        <option value='ventilator' selected>Ventilator</option>
+                        <option value='hfnc'>HFNC</option>
+                      </select>
+                      <span class="patientid">{{patient.id}}</span>
+                    {% elif patient.bed.name == 'hfnc' %}
+                      <select name="room_type" class="select_roomtype">
+                        <option value='ward' >Ward</option>
+                        <option value='oxygen'>Oxygen</option>
+                        <option value='ventilator'>Ventilator</option>
+                        <option value='hfnc' selected>HFNC</option>
+                      </select>
+                      <span class="patientid">{{patient.id}}</span>
+                    {% else %}
+                    <select name="room_type" class="select_roomtype">
+                      <option selected disabled>select </option>
+                      <option value='ward'>Ward</option>
+                      <option value='oxygen'>Oxygen</option>
+                      <option value='ventilator'>Ventilator</option>
+                      <option value='hfnc'>HCNF</option>
+                    </select>
+                    <span class="patientid"> {{patient.id}} </span>
+                    {% endif %}
 
                 </td>
         
@@ -319,7 +353,13 @@
                   </div>
                 </td>
                 <td>
-                  <button id="btn-1">Expired</button>
+                  {% if patient.expired %}
+                    <button class="btn-1 death-report">GENERATE DEATH REPORT</button>
+                    <span class="patientid"> {{patient.id}} </span>
+                  {% else %}  
+                    <button class="btn-1">Expired</button>
+                    <span class="patientid"> {{patient.id}} </span>
+                  {% endif %}
                 </td>
               </tr>
             {% endfor %}

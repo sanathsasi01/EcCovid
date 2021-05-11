@@ -43,25 +43,94 @@
   <!-- external js file -->
   <script src="/static/js/main.js"></script>
   <script>
-    $(document).ready(function () {
+  $(document).ready(function () {
    
    // ajax criticalityChange
 
-   $(".criticality").change(function() {
-       // console.log("changed");
-       let newCriticality = $(this).val();
-       let patientId = $(this).next().text();
-       let url = "{% url 'criticalityChange' %}"
-       $.ajax({
-           type : 'GET',
-           url : url,
-           data : {
-             'newCriticality' : newCriticality,
-             'patientId' : patientId         
+    $(".criticality").change(function() {
+        // console.log("changed");
+        let newCriticality = $(this).val();
+        let patientId = $(this).next().text();
+        let url = "{% url 'criticalityChange' %}"
+        $.ajax({
+            type : 'GET',
+            url : url,
+            data : {
+              'newCriticality' : newCriticality,
+              'patientId' : patientId         
+              }
+        })
+    })
+
+    //  room type ajax
+
+    $('.select_roomtype').change(function() {
+      let newRoom = $(this).val();
+      let patientId = $(this).next().text();
+      let url = "{% url 'bedChange' %}"
+      $.ajax({
+        type : 'GET',
+        url : url,
+        data : {
+          'newRoom' : newRoom,
+          'patientId' : patientId
+        },
+        success : function(data) {
+          if (data.success == 'False') {
+            alert('Selected room not available')
+          }
+          else {
+            $('#ventilator').html( data.ventilator)
+            $('#hfnc').html(data.hfnc);
+            $('#ward').html(data.ward) ;
+            $('#oxygen').html(data.oxygen) ;
+            $('#totalbedsFree').html( data.totalbedsFree);
+
+          }
+        }
+
+      })
+    })
+
+    // ajax for expired
+
+    $('.btn-1').click(function() {
+      let patientId = $(this).next().text();
+      let btn_text = $(this).text();
+      let url = "{% url 'expired' %}"
+      // not expired, make patient expired
+      if (btn_text == 'Expired'){
+        // $('.btn-1').click(function() {
+          $(this).css({
+              'background-color' : 'red',
+              'color' : 'white'
+          });
+          $(this).text('GENERATE DEATH REPORT')
+        // })
+        $.ajax({
+          url : url,
+          data : {
+            'expired' : 'True',
+            'patientId' : patientId
+          },
+          success : function(data) {
+            if(data.success == 'False'){
+              alert('Something went wrong, try again')
+            }else{
+              alert('success')
             }
-       })
-   })
-    });
+          }
+        })
+      }
+      // generate death report, call pdf function
+      else{
+        alert('death report generation coming soon....')
+      }
+    })
+
+
+
+  });
   </script>
 </body>
 </html>

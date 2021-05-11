@@ -7,7 +7,6 @@ User = get_user_model()
 
 class Beds(models.Model):
     name = models.CharField(max_length=20, null=True)
-
     def __str__(self):
         return self.name 
 
@@ -33,8 +32,8 @@ class PatientDetails(models.Model):
     bystander_mobile_no = models.CharField(null=True,max_length=10)
     dateAdmitted = models.DateTimeField(null=True)
     criticallity = models.CharField(max_length=20, null=True)
-    bed = models.ForeignKey(Beds, on_delete=models.CASCADE, null=True)
-
+    bed = models.ForeignKey(Beds, on_delete=models.CASCADE, null=True,blank=True)
+    expired = models.BooleanField(default=False)
 
     swab_taken = models.CharField(max_length=3, null=True, blank=True)
     hrct_taken = models.CharField(max_length=3, null=True, blank=True)
